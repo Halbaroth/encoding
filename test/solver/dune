@@ -24,6 +24,12 @@
  (build_if %{lib-available:colibri2.core}))
 
 (test
+ (name test_alt_ergo)
+ (modules test_alt_ergo)
+ (libraries smtml_tests)
+ (build_if %{lib-available:alt-ergo-lib}))
+
+(test
  (name test_bitwuzla)
  (modules test_bitwuzla)
  (libraries smtml_tests)

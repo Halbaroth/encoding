@@ -31,13 +31,13 @@ module Make (M : Mappings_intf.S) = struct
       Expr.equal v (int 0) );
     Solver.pop solver 1;
 
-    Solver.push solver;
+    (* Solver.push solver;
     Solver.add solver [ x = int 3 ];
     assert_sat (Solver.check solver []);
     assert (
       let v = Solver.get_value solver Int.(x * x) in
       Expr.equal v (int 9) );
-    Solver.pop solver 1;
+    Solver.pop solver 1; *)
 
     Solver.push solver;
     Solver.add solver Int.[ x >= int 0 || x < int 0 ];

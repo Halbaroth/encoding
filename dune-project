@@ -29,7 +29,8 @@
   z3
   colibri2
   bitwuzla-cxx
-  cvc5)
+  cvc5
+  alt-ergo-lib)
  (conflicts
   (z3
    (or

@@ -12,6 +12,7 @@
   compile
   constructors_intf
   colibri2_mappings
+  alt_ergo_mappings
   cvc5_mappings
   eval
   expr
@@ -66,6 +67,11 @@
     colibri2_mappings.default.ml)
    (-> colibri2_mappings.nop.ml))
   (select
+    alt_ergo_mappings.ml
+    from
+    (alt-ergo-lib -> alt_ergo_mappings.default.ml)
+    (-> alt_ergo_mappings.nop.ml))
+  (select
    bitwuzla_mappings.ml
    from
    (threads bitwuzla-cxx -> bitwuzla_mappings.default.ml)
@@ -86,6 +92,7 @@
 
 (rule
  (targets
+  alt_ergo_mappings.nop.ml
   colibri2_mappings.nop.ml
   bitwuzla_mappings.nop.ml
   cvc5_mappings.nop.ml
@@ -93,6 +100,12 @@
  (deps mappings.nop.ml)
  (action
   (progn
+   (with-stdout-to
+    alt_ergo_mappings.nop.ml
+    (progn
+     (echo "let solver_name = \"Alt-Ergo\"\n")
+     (echo "let solver_package = \"Alt-Ergo\"\n")
+     (cat mappings.nop.ml)))
    (with-stdout-to
     z3_mappings.nop.ml
     (progn
